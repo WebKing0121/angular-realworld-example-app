@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './article-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
@@ -13,8 +14,9 @@ import { ShowAuthedDirective } from './show-authed.directive';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   declarations: [
@@ -34,9 +36,9 @@ import { ShowAuthedDirective } from './show-authed.directive';
     FavoriteButtonComponent,
     FollowButtonComponent,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     ListErrorsComponent,
+    ReactiveFormsModule,
     RouterModule,
     ShowAuthedDirective
   ]

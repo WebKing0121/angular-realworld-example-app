@@ -1,29 +1,30 @@
-<app-article-preview
-  *ngFor="let article of results"
-  [article]="article">
-</app-article-preview>
+<div class="w-full h-full">
+  <app-article-preview
+    *ngFor="let article of results"
+    [article]="article">
+  </app-article-preview>
 
-<div class="app-article-preview"
-  [hidden]="!loading">
-  Loading articles...
+  <div *ngIf="loading" class="w-full flex justify-center items-center py-60">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="app-article-preview"
+    [hidden]="loading || results.length">
+    No articles are here... yet.
+  </div>
+
+  <nav [hidden]="loading || totalPages.length <= 1">
+    <ul class="pagination">
+
+      <li class="page-item"
+        [ngClass]="{'active': pageNumber === currentPage}"
+        *ngFor="let pageNumber of totalPages"
+        (click)="setPageTo(pageNumber)">
+
+        <a class="page-link" >{{ pageNumber }}</a>
+
+      </li>
+
+    </ul>
+  </nav>
 </div>
-
-<div class="app-article-preview"
-  [hidden]="loading || results.length">
-  No articles are here... yet.
-</div>
-
-<nav [hidden]="loading || totalPages.length <= 1">
-  <ul class="pagination">
-
-    <li class="page-item"
-      [ngClass]="{'active': pageNumber === currentPage}"
-      *ngFor="let pageNumber of totalPages"
-      (click)="setPageTo(pageNumber)">
-
-      <a class="page-link" >{{ pageNumber }}</a>
-
-    </li>
-
-  </ul>
-</nav>

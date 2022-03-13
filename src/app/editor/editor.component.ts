@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 import { Article, ArticlesService } from '../core';
 
@@ -14,6 +15,35 @@ export class EditorComponent implements OnInit {
   tagField = new FormControl();
   errors: Object = {};
   isSubmitting = false;
+  htmlContent = '';
+  editorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 
   constructor(
     private articlesService: ArticlesService,
@@ -65,7 +95,7 @@ export class EditorComponent implements OnInit {
 
     // update the model
     this.updateArticle(this.articleForm.value);
-
+    console.log('tiger: ', this.article);
     // post the changes
     this.articlesService.save(this.article).subscribe(
       article => this.router.navigateByUrl('/article/' + article.slug),
